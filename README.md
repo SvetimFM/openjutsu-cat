@@ -149,6 +149,16 @@ park path, shot on a Canon) — the estimated depth drives the same Wan control
 graph, no Kinect required. The performer keeps its species: ducks stay ducks,
 the prompt only supplies the costume.
 
+```
+# run with ComfyUI's python: it already has torch, transformers and pillow;
+# the Depth-Anything model (~100 MB) downloads on first run
+python capture/depth_estimate.py my-clip.mov my-clip-depth.mp4 2.0 49   # start at 2.0 s, 49 frames
+python run_local.py depth --video my-clip-depth.mp4 --prompt "A cat painted in black sumi-e ink"
+```
+
+The clip is center-cropped to a square, so keep the performer near the middle
+of the frame.
+
 ## Files
 
 - `workflow-depth-control-api.json` — the exact workflow behind the benchmark

@@ -2,7 +2,7 @@
 # (640x640, 16 fps, near = bright), using Depth-Anything-V2-Small (open weights).
 # Decoding/encoding via ffmpeg CLI; depth via transformers pipeline. Stdlib + torch/PIL.
 # Usage: depth_estimate.py <input_video> <output_mp4> [start_seconds] [frames]
-import os, subprocess, sys, glob
+import os, subprocess, sys, glob, tempfile
 import numpy as np
 from PIL import Image
 
@@ -16,8 +16,11 @@ def main():
     src, out = sys.argv[1], sys.argv[2]
     start = float(sys.argv[3]) if len(sys.argv) > 3 else 0.0
     nframes = int(sys.argv[4]) if len(sys.argv) > 4 else 49
-    tmp = os.path.join(os.path.dirname(os.path.abspath(out)), "depthtmp")
-    os.makedirs(tmp, exist_ok=True)
+    # a fresh folder per run: frames left by an earlier, longer run would be encoded too
+    with tempfile.TemporaryDirectory(prefix="depth_estimate-") as tmp:
+        convert(src, out, start, nframes, tmp)
+
+def convert(src, out, start, nframes, tmp):
     # 1. extract frames at 16 fps, center-crop square, 640x640
     sh(["ffmpeg", "-hide_banner", "-loglevel", "error", "-ss", str(start), "-i", src,
         "-vf", f"fps=16,crop='min(iw,ih)':'min(iw,ih)',scale=640:640", "-frames:v", str(nframes),
