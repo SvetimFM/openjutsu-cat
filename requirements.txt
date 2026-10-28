@@ -1,0 +1,6 @@
+# run_local.py, camera_slate.py and tools/ need only the Python standard library.
+# The capture tools need:
+numpy>=1.24            # capture/encode_depth.py, pick_window.py, process_take.py
+# capture/depth_estimate.py (RGB video -> depth) additionally needs:
+#   torch, transformers>=4.45, pillow
+# and every capture tool needs ffmpeg/ffprobe on PATH.

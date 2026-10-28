@@ -1,0 +1,82 @@
+{
+ "_comment": "Exact byte sizes + sha256 as served by Hugging Face (checked 2026-10-27). role: depth/cinema = needed by the shipped workflows; benchmark = run_local.py base; optional/fallback = not used by the shipped graphs.",
+ "models": [
+  {
+   "path": "models/unet/Wan2.2-Fun-5B-Control-Q5_K_M.gguf",
+   "bytes": 3821521760,
+   "sha256": "fc4382f1e75c741d970bbfb8edd1caf24c463231ea95289761eae0925cdded8f",
+   "url": "https://huggingface.co/QuantStack/Wan2.2-Fun-5B-Control-GGUF/resolve/main/Wan2.2-Fun-5B-Control-Q5_K_M.gguf",
+   "role": "depth"
+  },
+  {
+   "path": "models/text_encoders/umt5-xxl-encoder-Q5_K_M.gguf",
+   "bytes": 4145878880,
+   "sha256": "eaea358bb438c5d211721a4feecc162000e3636e9cb96f51e216f1f44ebd12ce",
+   "url": "https://huggingface.co/city96/umt5-xxl-encoder-gguf/resolve/main/umt5-xxl-encoder-Q5_K_M.gguf",
+   "role": "depth"
+  },
+  {
+   "path": "models/vae/Wan2.2_VAE.safetensors",
+   "bytes": 1409400960,
+   "sha256": "e40321bd36b9709991dae2530eb4ac303dd168276980d3e9bc4b6e2b75fed156",
+   "url": "https://huggingface.co/QuantStack/Wan2.2-TI2V-5B-GGUF/resolve/main/VAE/Wan2.2_VAE.safetensors",
+   "role": "depth"
+  },
+  {
+   "path": "models/unet/Wan2.2-TI2V-5B-Q5_K_M.gguf",
+   "bytes": 3810603360,
+   "sha256": "4424633a876511b9be58a41119f7c9d762ea92b3cb74649cdb43cac850e42dba",
+   "url": "https://huggingface.co/QuantStack/Wan2.2-TI2V-5B-GGUF/resolve/main/Wan2.2-TI2V-5B-Q5_K_M.gguf",
+   "role": "benchmark"
+  },
+  {
+   "path": "models/checkpoints/ltxv-2b-0.9.8-distilled.safetensors",
+   "bytes": 6340744492,
+   "sha256": "76aa8c4786af752fa6f951947129d5290c3c6c0b2fadcadea6b5e114ae2cad8f",
+   "url": "https://huggingface.co/Lightricks/LTX-Video/resolve/main/ltxv-2b-0.9.8-distilled.safetensors",
+   "role": "cinema"
+  },
+  {
+   "path": "models/checkpoints/ltxv-2b-0.9.8-distilled-fp8.safetensors",
+   "bytes": 4461695684,
+   "sha256": "d6d8fa8ed3a98346787c2503ac80fb5d7cebcf80e356b79a2ba361fbadf97e15",
+   "url": "https://huggingface.co/Lightricks/LTX-Video/resolve/main/ltxv-2b-0.9.8-distilled-fp8.safetensors",
+   "role": "optional"
+  },
+  {
+   "path": "models/text_encoders/t5xxl_fp16.safetensors",
+   "bytes": 9787841024,
+   "sha256": "6e480b09fae049a72d2a8c5fbccb8d3e92febeb233bbe9dfe7256958a9167635",
+   "url": "https://huggingface.co/Comfy-Org/Mochi-Preview/resolve/main/split_files/text_encoders/t5xxl_fp16.safetensors",
+   "role": "cinema"
+  },
+  {
+   "path": "models/diffusion_models/wan2.1_fun_control_1.3B_bf16.safetensors",
+   "bytes": 3129105448,
+   "sha256": "9ff6289322b41bf187206eac2a57e85ce85c9ee5bfe8bc44eabeaeb86b44129a",
+   "url": "https://huggingface.co/Comfy-Org/Wan-2.1/resolve/main/split_files/diffusion_models/wan2.1_fun_control_1.3B_bf16.safetensors",
+   "role": "fallback"
+  },
+  {
+   "path": "models/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+   "bytes": 6735906897,
+   "sha256": "c3355d30191f1f066b26d93fba017ae9809dce6c627dda5f6a66eaa651204f68",
+   "url": "https://huggingface.co/Comfy-Org/Wan-2.1/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+   "role": "fallback"
+  },
+  {
+   "path": "models/vae/wan_2.1_vae.safetensors",
+   "bytes": 253815318,
+   "sha256": "2fc39d31359a4b0a64f55876d8ff7fa8d780956ae2cb13463b0223e15148976b",
+   "url": "https://huggingface.co/Comfy-Org/Wan-2.1/resolve/main/split_files/vae/wan_2.1_vae.safetensors",
+   "role": "fallback"
+  },
+  {
+   "path": "models/clip_vision/clip_vision_h.safetensors",
+   "bytes": 1264219396,
+   "sha256": "64a7ef761bfccbadbaa3da77366aac4185a6c58fa5de5f589b42a65bcc21f161",
+   "url": "https://huggingface.co/Comfy-Org/Wan-2.1/resolve/main/split_files/clip_vision/clip_vision_h.safetensors",
+   "role": "fallback"
+  }
+ ]
+}

@@ -1,0 +1,152 @@
+{
+ "1": {
+  "class_type": "UnetLoaderGGUF",
+  "inputs": {
+   "unet_name": "Wan2.2-Fun-5B-Control-Q5_K_M.gguf"
+  }
+ },
+ "2": {
+  "class_type": "CLIPLoaderGGUF",
+  "inputs": {
+   "clip_name": "umt5-xxl-encoder-Q5_K_M.gguf",
+   "type": "wan"
+  }
+ },
+ "3": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "Wan2.2_VAE.safetensors"
+  }
+ },
+ "6": {
+  "class_type": "ModelSamplingSD3",
+  "inputs": {
+   "model": [
+    "1",
+    0
+   ],
+   "shift": 8.0
+  }
+ },
+ "4": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "2",
+    0
+   ],
+   "text": "A majestic cat made of glowing blue spirit light walks through a dark mystical forest, volumetric glow, cinematic"
+  }
+ },
+ "5": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "2",
+    0
+   ],
+   "text": "low quality, blurry, static image, deformed, extra limbs, subtitles, watermark, text"
+  }
+ },
+ "12": {
+  "class_type": "LoadVideo",
+  "inputs": {
+   "file": "test-depth-640x640-49f.mp4"
+  }
+ },
+ "13": {
+  "class_type": "GetVideoComponents",
+  "inputs": {
+   "video": [
+    "12",
+    0
+   ]
+  }
+ },
+ "7": {
+  "class_type": "Wan22FunControlToVideo",
+  "inputs": {
+   "positive": [
+    "4",
+    0
+   ],
+   "negative": [
+    "5",
+    0
+   ],
+   "vae": [
+    "3",
+    0
+   ],
+   "width": 640,
+   "height": 640,
+   "length": 49,
+   "batch_size": 1,
+   "control_video": [
+    "13",
+    0
+   ]
+  }
+ },
+ "8": {
+  "class_type": "KSampler",
+  "inputs": {
+   "model": [
+    "6",
+    0
+   ],
+   "seed": 2077,
+   "steps": 20,
+   "cfg": 5.0,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "positive": [
+    "7",
+    0
+   ],
+   "negative": [
+    "7",
+    1
+   ],
+   "latent_image": [
+    "7",
+    2
+   ],
+   "denoise": 1.0
+  }
+ },
+ "9": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "8",
+    0
+   ],
+   "vae": [
+    "3",
+    0
+   ]
+  }
+ },
+ "11": {
+  "class_type": "CreateVideo",
+  "inputs": {
+   "images": [
+    "9",
+    0
+   ],
+   "fps": 16.0
+  }
+ },
+ "14": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "11",
+    0
+   ],
+   "filename_prefix": "openjutsu/depth",
+   "format": "mp4"
+  }
+ }
+}

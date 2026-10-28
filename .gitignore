@@ -1,0 +1,7 @@
+# model weights are never committed — see README / models.json for download links
+*.safetensors
+*.gguf
+*.ckpt
+/out/
+/output/
+__pycache__/

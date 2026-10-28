@@ -1,0 +1,10 @@
+# Copy into your ComfyUI folder as extra_model_paths.yaml when the big models
+# can't live in ComfyUI/models/ - e.g. ComfyUI sits on a FAT32 drive, which
+# cannot hold files over 4 GiB (the 9.8 GB T5 encoder, the 6.3 GB LTX checkpoint).
+# ComfyUI searches its own models/ folder FIRST: delete any partial same-named
+# copy there, or it shadows the good file below (tools/verify_models.py --extra
+# checks exactly this).
+big_drive:
+    base_path: D:/comfy-models/
+    checkpoints: checkpoints
+    text_encoders: text_encoders

@@ -1,0 +1,134 @@
+{
+ "1": {
+  "class_type": "CheckpointLoaderSimple",
+  "inputs": {
+   "ckpt_name": "ltxv-2b-0.9.8-distilled.safetensors"
+  }
+ },
+ "10": {
+  "class_type": "EmptyLTXVLatentVideo",
+  "inputs": {
+   "batch_size": 1,
+   "height": 512,
+   "length": 49,
+   "width": 768
+  }
+ },
+ "11": {
+  "class_type": "CreateVideo",
+  "inputs": {
+   "images": [
+    "9",
+    0
+   ],
+   "fps": 25.0
+  }
+ },
+ "2": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "t5xxl_fp16.safetensors",
+   "type": "ltxv"
+  }
+ },
+ "4": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "2",
+    0
+   ],
+   "text": "Slow cinematic dolly-in toward a grey cat sitting on a wooden porch at golden hour, the cat looks calmly into the lens, shallow depth of field, photorealistic"
+  }
+ },
+ "5": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "clip": [
+    "2",
+    0
+   ],
+   "text": "low quality, blurry, static image, deformed, extra limbs, subtitles, watermark, text"
+  }
+ },
+ "6": {
+  "class_type": "ModelSamplingLTXV",
+  "inputs": {
+   "base_shift": 0.95,
+   "latent": [
+    "10",
+    0
+   ],
+   "max_shift": 2.05,
+   "model": [
+    "1",
+    0
+   ]
+  }
+ },
+ "7": {
+  "class_type": "LTXVConditioning",
+  "inputs": {
+   "frame_rate": 25.0,
+   "negative": [
+    "5",
+    0
+   ],
+   "positive": [
+    "4",
+    0
+   ]
+  }
+ },
+ "8": {
+  "class_type": "KSampler",
+  "inputs": {
+   "cfg": 3.0,
+   "denoise": 1.0,
+   "latent_image": [
+    "10",
+    0
+   ],
+   "model": [
+    "6",
+    0
+   ],
+   "negative": [
+    "7",
+    1
+   ],
+   "positive": [
+    "7",
+    0
+   ],
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "seed": 2077,
+   "steps": 20
+  }
+ },
+ "9": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "8",
+    0
+   ],
+   "vae": [
+    "1",
+    2
+   ]
+  }
+ },
+ "14": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "11",
+    0
+   ],
+   "filename_prefix": "openjutsu/cinema",
+   "format": "mp4"
+  }
+ }
+}
